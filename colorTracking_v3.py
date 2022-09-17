@@ -19,16 +19,18 @@ greenUpper = (64, 255, 255)
 pts = deque(maxlen=args["buffer"])
 counter = 0
 
-print(args)
+
 vs = cv2.VideoCapture(0)
 
 time.sleep(2.0)
 
-while True:
+def get_coordinates():
+	x = 0
+	y = 0
 	_, frame = vs.read()
 	frame = frame[1] if args.get("video", False) else frame
 	if frame is None:
-		break
+		return 0 ,0
 	frame = frame[0:480,0:480]
 	width = 480
 	height = 480
@@ -51,16 +53,17 @@ while True:
 			cv2.circle(frame, center, 5, (0, 0, 255), -1)
 			pts.appendleft(center)
 			cv2.putText(frame, "x: {}, y: {}".format(round(x)-width/2, (-1*(round(y)-height/2))),(10, frame.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
+	x_coord = round(x)-width/2
+	y_coord = (-1*(round(y)-height/2))
 	cv2.line(frame, (240,0), (240,480), (0, 0, 255), 1)
 	cv2.line(frame, (0,240), (480,240), (0, 0, 255), 1)
-	cv2.imshow("Frame", frame)
-	cv2.imshow("Mask", mask)		#Display mask window
-	key = cv2.waitKey(1) & 0xFF
-	counter += 1
-	if key == ord("q"):
-		break
-if not args.get("video", False):
-	vs.stop()
-else:
-	vs.release()
-cv2.destroyAllWindows()
+	#cv2.imshow("Frame", frame)
+	#cv2.imshow("Mask", mask)		#Display mask window
+	#key = cv2.waitKey(1) & 0xFF
+	#counter += 1
+	return x_coord, y_coord
+# if not args.get("video", False):
+# 	vs.stop()
+# else:
+# 	vs.release()
+# cv2.destroyAllWindows()
