@@ -5,9 +5,11 @@
 import time    #https://docs.python.org/fr/3/library/time.html
 from adafruit_servokit import ServoKit    #https://circuitpython.readthedocs.io/projects/servokit/en/latest/
 import argparse
+import time
+parser = argparse.ArgumentParser()
+parser.add_argument('--angle',type=int, required=True)
 
-parse = argparse.ArgumentParser()
-
+args = parser.parse_args()
 #Constants
 nbPCAServo=16 
 
@@ -29,8 +31,10 @@ def init():
 
 # function main 
 def main():
-
-    pca.servo[0].angle = 0
+    print(args.angle)
+    pca.servo[0].angle =args.angle
+    #pca.servo[0].angle = 90 
+    time.sleep(0.5)
     pca.servo[0].angle = None
 
 
