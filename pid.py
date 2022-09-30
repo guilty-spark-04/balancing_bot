@@ -1,4 +1,5 @@
 from colorTracking_v3 import *
+from math import *
 from adafruit_servokit import ServoKit
 import time
 pca = ServoKit(channels=16)
@@ -6,6 +7,11 @@ servo1 = pca.servo[0]
 servo2 = pca.servo[1]
 servo3 = pca.servo[2]
 
+def pxs_to_deg(x,y):
+    deg = degrees(atan2(y,x))
+    if deg<0:
+        deg +=360
+    return deg
 
 while(1):
     x, y = get_coordinates()
