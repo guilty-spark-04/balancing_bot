@@ -9,11 +9,11 @@ servo3 = pca.servo[2]
 
 while(1):
     x, y = get_coordinates()
-    print(f"X coordinate is: {x} \nY coordinate is: {y}")
+    print(f"Coordinate are: {x}\t {y}")
     if(x > 0):
         servo1.angle = 180
     elif(x<0): servo1.angle = 0
     if(y >0):
         servo2.angle = 180
     elif(y<0):servo2.angle = 0
-    time.sleep(0.5)
+    time.sleep(0.25)

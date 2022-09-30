@@ -4,6 +4,9 @@
 #Libraries
 import time    #https://docs.python.org/fr/3/library/time.html
 from adafruit_servokit import ServoKit    #https://circuitpython.readthedocs.io/projects/servokit/en/latest/
+import argparse
+
+parse = argparse.ArgumentParser()
 
 #Constants
 nbPCAServo=16 
@@ -27,7 +30,8 @@ def init():
 # function main 
 def main():
 
-    pcaScenario();
+    pca.servo[0].angle = 0
+    pca.servo[0].angle = None
 
 
 # function pcaScenario 
