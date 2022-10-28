@@ -32,10 +32,17 @@ def init():
 # function main 
 def main():
     print(args.angle)
-    pca.servo[0].angle =args.angle
+    pca.servo[4].angle =args.angle
+    time.sleep(0.2)
+    pca.servo[5].angle =args.angle
+    time.sleep(0.2)
+    pca.servo[6].angle =args.angle
+    time.sleep(0.2)
     #pca.servo[0].angle = 90 
     time.sleep(0.5)
-    pca.servo[0].angle = None
+    pca.servo[4].angle = None
+    pca.servo[5].angle = None
+    pca.servo[6].angle = None
 
 
 # function pcaScenario 
